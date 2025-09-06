@@ -1,0 +1,58 @@
+
+
+ {% extends "traco/base.html" %}
+
+{% load static %}
+
+ {% load widget_tweaks %}
+
+{% block title %}TRACO - Trading Platform{% endblock %}
+
+{% block content %}
+
+<div class="container max-w-7xl mx-auto p-4 md:p-12 lg:p-16 rounded-3xl shadow-2xl flex flex-col lg:flex-row items-center justify-center mt-10 space-y-10 lg:space-y-0 lg:space-x-12">
+
+    <div class="flex-shrink-0 w-full lg:w-1/2 flex justify-center">
+        <img src="{% static 'images/Gold+bull-removebg-preview.png' %}" alt="Golden Bull and Gold Bars" class="w-full h-auto rounded-2xl">
+    </div>
+
+    <div class="w-full lg:w-1/2 p-4 md:p-8 rounded-2xl">
+        <h1 class="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-8 text-green-400 text-center lg:text-right">Register</h1>
+
+        <form method="post" action="{% url 'register' %}" class="space-y-6">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div>
+                {{ form.username.errors }}
+                {{ form.username|add_class:"form-input  w-full px-4 py-2 rounded-xl" }}
+            </div>
+             <div>
+                {{ form.phone.errors }}
+                {{ form.phone|add_class:"form-input  w-full px-4 py-2 rounded-xl" }}
+            </div> 
+            <div>
+                {{ form.email.errors }}
+                {{ form.email|add_class:"form-input w-full px-4 py-2 rounded-xl" }}
+            </div>
+            <div>
+                {{ form.password.errors }}
+                {{ form.password|add_class:"form-input w-full px-4 py-2 rounded-xl" }}
+            </div>
+            <div>
+                {{ form.confirm_password.errors }}
+                {{ form.confirm_password|add_class:"form-input w-full px-4 py-2 rounded-xl" }}
+            </div>
+
+            <div>
+                <button type="submit" class="w-full py-3 px-6 rounded-xl font-bold text-lg text-gray-900 bg-gradient-to-r from-green-400 to-lime-500 hover:from-green-500 hover:to-lime-600 transition-colors duration-300 transform hover:scale-105 shadow-xl">
+                    Register
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-8 text-center text-gray-400">
+            <a href="{% url 'login' %}" class="text-sm hover:underline transition-colors duration-200">Already Have an Account? Log in Here</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}TRACO{% endblock %}</title>
+  <link rel="icon" type="image/ico" href="{% static 'images/favicon.ico' %}">
+ 
+  <!-- Open Sans Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+ 
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+ 
+  <!-- Bootstrap -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+ 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'traco/css/styles.css' %}" />
+</head>
+<body class="bg-black text-white font-['Open Sans']">
+ 
+  
+    <!-- Navbar -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-black shadow-md font-bold">
+    <div class="flex items-center justify-between px-4 md:px-6 py-4">
+
+        <!-- Logo -->
+      <a href="#" class="text-[#D4FF00] font-bold text-xl">
+        <img src="{% static 'images/logo.png' %}" alt="TRACO Logo" class="h-8">
+      </a>
+
+   <nav class="hidden md:flex gap-32 text-white items-center">
+   
+      <a href="{% url 'home' %}" class="hover:text-[#D4FF00]">Home</a>
+      <a href="{% url 'about' %}" class="hover:text-[#D4FF00]">About Us</a>
+      <a href="{% url 'index' %}" class="hover:text-[#D4FF00]">Blogs</a>
+      <a href="{% url 'partner' %}" class="hover:text-[#D4FF00]">Become a Partner</a>
+      <a href="{% url 'login' %}" class="text-white hover:text-[#D4FF00]">
+        <i class="bi bi-person-circle text-2xl"></i>
+      </a>
+     
+    </nav>
+ 
+      <!-- Mobile Hamburger -->
+      <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none">
+        &#9776;
+      </button>
+    </div>
+
+ 
+
+   <div id="mobile-menu" class="hidden md:hidden bg-black overflow-hidden transition-all duration-300 ease-in-out">
+    <div class="flex flex-col px-4 py-4 space-y-4">
+  
+    <a href="{% url 'home' %}" class="hover:text-[#D4FF00]">Home</a>
+    <a href="{% url 'about' %}" class="hover:text-[#D4FF00]">About Us</a>
+    <a href="{% url 'index' %}" class="hover:text-[#D4FF00]">Blogs</a>
+    <a href="{% url 'partner' %}" class="hover:text-[#D4FF00]">Become a Partner</a>
+    <a href="{% url 'login' %}" class="hover:text-[#D4FF00]">
+        <i class="bi bi-person-circle text-2xl"></i>
+      </a>
+    </div>
+  </div> 
+ </header>
+ 
+  <!-- Page Content -->
+  <main  class="mt-16">
+    {% block content %}{% endblock %}
+  </main>
+ 
+  <!-- Footer -->
+  <footer class="bg-black text-white px-6 py-10 border border-white rounded-lg">
+     <div class="grid md:grid-cols-4 gap-6"> 
+   
+      <div>
+        <h3 class="text-[#D4FF00] font-bold"><img src="{% static 'images/logo.png' %}" class="h-10"></h3>
+        <p class="mt-2 text-white">Get in Touch</p>
+        <div class="flex gap-3 mt-3">
+          <span class="bg-[#D4FF00] w-8 h-8 flex items-center justify-center rounded-full text-black">F</span>
+          <span class="bg-[#D4FF00] w-8 h-8 flex items-center justify-center rounded-full text-black">X</span>
+          <span class="bg-[#D4FF00] w-8 h-8 flex items-center justify-center rounded-full text-black">I</span>
+        </div>
+      </div>
+ 
+      <div>
+        <h4 class="font-semibold">Home</h4>
+        <ul class="mt-2 space-y-2 text-white">
+          <li>Trade Investor</li>
+          <li>About Us</li>
+          <li>Blogs</li>
+          <li>Become a Partner</li>
+        </ul>
+      </div>
+ 
+      <div>
+        <h4 class="font-semibold">Information</h4>
+        <ul class="mt-2 space-y-2 text-white">
+          <li>Market Explore</li>
+          <li>Ready Token</li>
+          <li>Main Option</li>
+          <li>File Checking</li>
+        </ul>
+      </div>
+ 
+      <div>
+        <h4 class="font-semibold">Newsletter</h4>
+      <div class="mt-2 flex flex-col sm:flex-row gap-2">
+  <input type="email" placeholder="Enter Your Email" class="px-3 py-2 rounded-lg text-black flex-1">
+  <button class="bg-[#D4FF00] px-4 py-2 rounded-lg text-black font-semibold">Subscribe</button>
+</div>
+
+        <p class="text-white text-sm mt-2">
+          NFTs are Transforming the way Commerce is Transacted.
+        </p>
+      </div>
+    </div>
+  </footer>
+ 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+ 
+  <!-- Custom JS -->
+  <script src="{% static 'traco/js/main.js' %}"></script>
+<!-- JS for Mobile Toggle -->
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+ 
+    menuToggle.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+      } else {
+        mobileMenu.style.maxHeight = "0px";
+        setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+      }
+    });
+  </script>
+
+</body>
+</html>

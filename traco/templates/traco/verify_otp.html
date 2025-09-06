@@ -1,0 +1,56 @@
+{% extends "traco/base.html" %}
+{% block title %}Verify OTP{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-12 p-6 bg-gray-900 rounded-xl shadow-lg">
+  <h1 class="text-2xl font-bold mb-6 text-white text-center">Verify OTP</h1>
+
+  {% if not success_message %}
+    <!-- ✅ Show form only if OTP not verified -->
+    <form method="post" action="{% url 'verify_otp' %}" class="space-y-6">
+      {% csrf_token %}
+      {{ form.otp }}
+      {% if form.otp.errors %}
+        <p class="text-red-400 text-sm mt-1">{{ form.otp.errors.0 }}</p>
+      {% endif %}
+
+      <button type="submit"
+        class="w-full py-3 px-6 rounded-xl font-bold text-lg text-gray-900
+               bg-gradient-to-r from-green-400 to-lime-500 hover:from-green-500 hover:to-lime-600
+               transition-colors duration-300">
+        Verify OTP
+      </button>
+    </form>
+  {% endif %}
+
+  <!-- ✅ Success Popup -->
+  {% if success_message %}
+    <div id="success-popup"
+         class="fixed top-6 right-6 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">
+      {{ success_message }}
+    </div>
+    <script>
+      setTimeout(() => {
+        const popup = document.getElementById("success-popup");
+        if (popup) popup.style.display = "none";
+      }, 3000);
+    </script>
+  {% endif %}
+
+  <!-- ❌ Error Popup -->
+  {% if messages %}
+    {% for message in messages %}
+      <div id="error-popup"
+           class="fixed top-6 right-6 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg">
+        {{ message }}
+      </div>
+    {% endfor %}
+    <script>
+      setTimeout(() => {
+        const popup = document.getElementById("error-popup");
+        if (popup) popup.style.display = "none";
+      }, 3000);
+    </script>
+  {% endif %}
+</div>
+{% endblock %}
