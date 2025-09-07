@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
+
 CITY_CHOICES = [
     ('', 'Select your city'),  
     ('Mumbai', 'Mumbai'),
@@ -16,7 +17,7 @@ class PartnerForm(forms.Form):
     phone = forms.CharField(max_length=10, min_length=10, widget=forms.TextInput(attrs={'placeholder': 'Phone Number', 'class': 'form-input w-full px-4 py-2 rounded-lg'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'E-Mail Id', 'class': 'form-input w-full px-4 py-2 rounded-lg'}))
     pincode = forms.CharField(max_length=6, min_length=6, widget=forms.TextInput(attrs={'placeholder': 'Pin Code', 'class': 'form-input w-full px-4 py-2 rounded-lg'}))
-    city = forms.ChoiceField(choices=CITY_CHOICES,  widget=forms.Select(attrs={'class': 'form-input w-full px-4 py-2 rounded-lg'}))
+    city = forms.ChoiceField(choices=CITY_CHOICES,  widget=forms.Select(attrs={'class': 'form-input w-full px-4 py-2 rounded-lg text-black'}))
 
 # Login Form
 class LoginForm(forms.Form):
@@ -64,7 +65,7 @@ class VerifyOtpForm(forms.Form):
     otp = forms.CharField(
         max_length=6,
         widget=forms.TextInput(attrs={
-            'placeholder': 'Enter OTP',
-            'class': 'form-input w-full px-4 py-2 rounded-xl'
+            'placeholder': 'Enter ',
+            'class': 'form-input w-full px-4 py-2 rounded-xl text-black'
         })
     )
